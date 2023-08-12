@@ -19,8 +19,8 @@ app.use(bodyParser.json());
 
 // ? Creating Server and setting it up at port 8080
 const server = http.createServer(app);
-server.listen(8080, () => {
-  console.log("hi");
+server.listen(5000, () => {
+  console.log("highj");
 });
 
 const MONGO_URL =
