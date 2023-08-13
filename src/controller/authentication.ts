@@ -38,7 +38,8 @@ export const login = async (req: express.Request, res: express.Response) => {
 
     const salt = random();
     user.auth.token = authentication(salt, user._id.toString());
-
+    await user.save();
+    res.cookie("test", user.auth.token, { domain: "localhost", path: "/" });
     return res.status(200).json(user).end();
   } catch (error) {
     return res.status(400);
