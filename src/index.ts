@@ -21,6 +21,9 @@ app.use(bodyParser.json());
 const server = http.createServer(app);
 server.listen(5000, () => {
   console.log("highj");
+  const message = [1, 2, 1, 2, 4, 4]; // Try edit me
+  const array = new Set(message);
+  console.log(array);
 });
 
 const MONGO_URL =
