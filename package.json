@@ -18,6 +18,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@netlify/functions": "^1.6.0",
     "@types/body-parser": "^1.19.2",
     "@types/compression": "^1.7.2",
     "@types/cookie-parser": "^1.4.3",
@@ -29,6 +30,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mongoose": "^7.4.3"
+    "mongoose": "^7.4.3",
+    "serverless-http": "^3.2.0"
   }
 }

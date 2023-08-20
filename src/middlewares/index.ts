@@ -9,14 +9,19 @@ export const isAuthenticated = async (
 ) => {
   try {
     const sessionToken = req.cookies["test"];
+
     if (!sessionToken) {
       return res.sendStatus(403);
     }
-    const exisitingUser = await getUserByToken(sessionToken);
-    if (!exisitingUser) {
+
+    const existingUser = await getUserByToken(sessionToken);
+
+    if (!existingUser) {
       return res.sendStatus(403);
     }
-    merge(req, exisitingUser);
+
+    merge(req, { identity: existingUser });
+
     return next();
   } catch (error) {
     console.log(error);
@@ -30,6 +35,18 @@ export const isOwner = async (
   next: express.NextFunction
 ) => {
   try {
+    const { id } = req.params;
+    const currentUserId = get(req, "identity._id") as string;
+
+    if (!currentUserId) {
+      return res.sendStatus(400);
+    }
+
+    if (currentUserId.toString() !== id) {
+      return res.sendStatus(403);
+    }
+
+    next();
   } catch (error) {
     console.log(error);
     return res.sendStatus(400);
