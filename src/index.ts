@@ -16,19 +16,14 @@ app.use(
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
-
 // ? Creating Server and setting it up at port 8080
 const server = http.createServer(app);
 server.listen(5000, () => {
-  console.log("highj");
-  const message = [1, 2, 1, 2, 4, 4]; // Try edit me
-  const array = new Set(message);
-  console.log(typeof message);
+  console.log("Server started");
 });
-
 const MONGO_URL =
   "mongodb+srv://anish:anish@cluster0.jdchusk.mongodb.net/?retryWrites=true&w=majority";
-mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
 mongoose.connection.on("error", (error: Error) => console.log(error));
+mongoose.connection.on("connected", () => console.log("DB connected"));
 app.use("/", router());

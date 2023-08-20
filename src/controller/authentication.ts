@@ -9,6 +9,9 @@ export const userDetail = async (
   const { email } = req.body;
   try {
     const user: any = await getUserByEmail(email);
+    if (!user) {
+      return res.sendStatus(400);
+    }
     return res.status(200).json(user).end();
   } catch (error) {
     return res.status(400);
