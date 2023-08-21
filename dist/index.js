@@ -11,6 +11,7 @@ const compression_1 = __importDefault(require("compression"));
 const cors_1 = __importDefault(require("cors"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const router_1 = __importDefault(require("./router"));
+require("dotenv").config();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     credentials: true,
@@ -23,8 +24,7 @@ const server = http_1.default.createServer(app);
 server.listen(5000, () => {
     console.log("Server started");
 });
-const MONGO_URL = "mongodb+srv://anish:anish@cluster0.jdchusk.mongodb.net/?retryWrites=true&w=majority";
-mongoose_1.default.connect(MONGO_URL);
+mongoose_1.default.connect(process.env.MONGO_URL);
 mongoose_1.default.connection.on("error", (error) => console.log(error));
 mongoose_1.default.connection.on("connected", () => console.log("DB connected"));
 app.use("/", (0, router_1.default)());

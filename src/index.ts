@@ -6,6 +6,7 @@ import compression from "compression";
 import cors from "cors";
 import mongoose from "mongoose";
 import router from "./router";
+require("dotenv").config();
 
 const app = express();
 app.use(
@@ -21,9 +22,7 @@ const server = http.createServer(app);
 server.listen(5000, () => {
   console.log("Server started");
 });
-const MONGO_URL =
-  "mongodb+srv://anish:anish@cluster0.jdchusk.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(MONGO_URL);
+mongoose.connect(process.env.MONGO_URL);
 mongoose.connection.on("error", (error: Error) => console.log(error));
 mongoose.connection.on("connected", () => console.log("DB connected"));
 app.use("/", router());
