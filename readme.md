@@ -2,7 +2,7 @@
 
 ## Deployment
 
-Delpoyed: https://todo-anish.netlify.app/
+Delpoyed: https://testdeploy-anish.onrender.com/users
 
 ## Run Locally
 
